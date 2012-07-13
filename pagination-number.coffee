@@ -4,10 +4,12 @@ dp = dian.data.pagination
 initTotal = -> '<span id="d_total">' + 'Page ' +  dp.current_number + ' of ' + dp.total + '</span>'
 
 initFirst = (f)-> 
-    '<a id="d_first" href=' + dp.first.url + ' title="首页">' + f + '</a>'
+    if !dian.data.view.tag
+        '<a id="d_first" href=' + dp.first.url + ' title="首页">' + f + '</a>'
 
 initLast = (l)-> 
-    '<a id="d_last" href=' + dp.last.url + ' title="尾页">' + l + '</a>'
+    if !dian.data.view.tag
+        '<a id="d_last" href=' + dp.last.url + ' title="尾页">' + l + '</a>'
 
 initPrev = (p)-> 
     '<a id="d_pagination_prev"  href="' + dp.prev.url + '" title="上一页">' + p + '</a>'

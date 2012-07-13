@@ -7,7 +7,8 @@ listtitle = -> write(dian.data.global.name)
 listtitles = (l) -> write(dian.data.global.name+l+"第"+dian.data.pagination.current_number+"页")
 
 pagetitle = -> 
-    page.title if page.current for page in dian.data.pages
+   for page in dian.data.pages
+       return page.title if page.current
 
 posttitle = (l) -> 
     if dian.data.posts[0].title

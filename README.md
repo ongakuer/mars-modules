@@ -10,3 +10,6 @@
 * pagination-prev-next.coffee ———— 翻页模块(简单，仅仅上一页/下一页)
 * exlightbox.coffee ———— lightbox 插件模块
 * photo.coffee ———— 多图布局模块
+
+------------------------------
+private文件夹下的是一些私人使用模块。

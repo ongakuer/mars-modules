@@ -12,6 +12,7 @@
 * photo.coffee ———— 多图布局模块
 * ujian.coffee ———— 友荐模块（第三方相关文章插件）
 * wumii.coffee ———— 无觅模块（第三方相关文章插件）
+* latestpost.coffee ———— 最新文章模块
 
 ------------------------------
 private文件夹下的是一些私人使用模块。

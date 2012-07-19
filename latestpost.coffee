@@ -24,14 +24,14 @@ postloop =  (post,tl,e) ->
     if e isnt ""  and e isnt undefined and e? 
         eachfirst = """<#{e}>"""
     else
-        eachfirst = """"""
+        eachfirst = ""
 
     eachmid = """<a href="#{post.url}" title="#{d_title}">#{d_title}</a>"""
 
     if e isnt ""  and e isnt undefined and e? 
         eachlast = """</#{e}>"""
     else
-        eachlast = """"""
+        eachlast = ""
 
     return eachfirst + eachmid + eachlast
 
@@ -41,14 +41,14 @@ latest = ({layout:l,each:e,length:tl})->
         if l isnt "" and l isnt undefined and l? 
             layoutfirst = """<#{l}>"""
         else
-            layoutfirst = """"""
+            layoutfirst = ""
     
         layoutmid = (postloop(post,tl,e) for post in dian.data.posts).join('')
 
         if l isnt "" and l isnt undefined and l? 
             layoutlast = """</#{l}>"""
         else
-            layoutlast = """"""
+            layoutlast = ""
     
         write(layoutfirst + layoutmid + layoutlast)
     

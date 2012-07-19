@@ -4,7 +4,7 @@ defaultTpl = """
 <a href="<%= post.d_title %>" title="<%= post.d_title %>"><%= post.d_title %></a>
 """
 
-latest = ({layout:l,title_length:tl,template:tpl})->
+latest = ({layout:l,template:tpl})->
 
         Tpl = _.template(tpl or defaultTpl)
         html = []
@@ -14,29 +14,21 @@ latest = ({layout:l,title_length:tl,template:tpl})->
         else
             layoutfirst = ""
 
-        _.each dian.data.posts, (post,tl) -> 
+        _.each dian.data.posts, (post) -> 
 
             if post.title
-                if post.title.length > tl 
-                    post.d_title = dian.tools.nohtmlTruncate(post.title,tl)
-                else
-                    post.d_title = post.title
-
+                post.d_title = post.title
+            
             else if post.song
-                if post.song.length > tl 
-                    post.d_title = dian.tools.nohtmlTruncate(post.song,tl)
-                else
-                    post.d_title = post.song
-
+                post.d_title = post.song
+                
             else if post.description
-                post.d_title = dian.tools.nohtmlTruncate(post.description,tl)
+                post.d_title = post.description
 
             else if post.content
-                post.d_title = dian.tools.nohtmlTruncate(post.content,tl)
-
+                post.d_title = post.content
             else
                 post.d_title = post.type_name
-
 
             if post.text 
                 post.d_content = post.content

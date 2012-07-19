@@ -1,10 +1,10 @@
 _ = require "dd://modules/underscore/1.3.3/underscore"
 
 defaultTpl = """
-<a href="<%= url %>" title="<%= title %>"><%= title %></a>
+<a href="<%= post.d_title %>" title="<%= post.d_title %>"><%= post.d_title %></a>
 """
 
-latest = ({layout:l,length:tl,template:tpl})->
+latest = ({layout:l,title_length:tl,template:tpl})->
 
         Tpl = _.template(tpl or defaultTpl)
         html = []
@@ -14,31 +14,37 @@ latest = ({layout:l,length:tl,template:tpl})->
         else
             layoutfirst = ""
 
-        _.each dian.data.posts, (post) -> 
+        _.each dian.data.posts, (post,tl) -> 
 
             if post.title
                 if post.title.length > tl 
-                    post.title = dian.tools.nohtmlTruncate(post.title,tl)
+                    post.d_title = dian.tools.nohtmlTruncate(post.title,tl)
                 else
-                    post.title = post.title
+                    post.d_title = post.title
 
             else if post.song
                 if post.song.length > tl 
-                    post.title = dian.tools.nohtmlTruncate(post.song,tl)
+                    post.d_title = dian.tools.nohtmlTruncate(post.song,tl)
                 else
-                    post.title = post.song
+                    post.d_title = post.song
 
             else if post.description
-                post.title = dian.tools.nohtmlTruncate(post.description,tl)
+                post.d_title = dian.tools.nohtmlTruncate(post.description,tl)
 
             else if post.content
-                post.title = dian.tools.nohtmlTruncate(post.content,tl)
+                post.d_title = dian.tools.nohtmlTruncate(post.content,tl)
 
-            else 
-                post.title = post.type_name
+            else
+                post.d_title = post.type_name
 
 
-            html.push(Tpl({url: post.url, title: post.title}))
+            if post.text 
+                post.d_content = post.content
+            else
+                post.d_content = post.description
+
+
+            html.push(Tpl({post:post}))
         
         layoutmid = html.join('')
 

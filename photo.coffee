@@ -1,5 +1,7 @@
 __=require('dd://modules/underscore/1.3.3/underscore')
 
+nohtml = dian.tools.nohtml 
+
 ############
 ############ 单张图
 pOne = (w,h,m,p,bw,bs,postarrt,c,i,num) ->
@@ -23,7 +25,7 @@ pOne = (w,h,m,p,bw,bs,postarrt,c,i,num) ->
     html.push(""" d_photo_1" style="display:block;margin-right:#{m}px;padding:#{p}px;width:#{pw}px;""")
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
     html.push(""" "><div style="display:block;width:#{pw}px;max-height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[num][ps].src}" """)
-    if post.description? then html.push(""" alt="#{post.photos[num].description}" """) else  html.push(""" alt="" """)
+    if post.description? then html.push(""" alt="#{nohtml(post.photos[num].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto;"></div></a>""")
 
     html.push("""</a></div>""")
@@ -78,7 +80,7 @@ pTwo = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
     html.push(""" d_photo_2_1" style="display:block;float:left;margin-right:#{m}px;padding:#{p}px; """)
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
     html.push(""" "><div style="display:block;width:#{pw}px;height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[n][ps].src}" """)
-    if post.description? then html.push(""" alt="#{post.photos[n].description}" """) else  html.push(""" alt="" """)
+    if post.description? then html.push(""" alt="#{nohtml(post.photos[n].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto"></div></a>""")
 
     #######
@@ -87,7 +89,7 @@ pTwo = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
     html.push(""" d_photo_2_2" style="display:block;float:right;padding:#{p}px; """)
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
     html.push(""" "><div style="display:block;width:#{pw}px;height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[n2][ps].src}" """)
-    if post.description? then html.push("""alt="#{post.photos[n2].description}" """) else  html.push(""" alt="" """)
+    if post.description? then html.push("""alt="#{nohtml(post.photos[n2].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto"></div></a>""")
 
     
@@ -162,7 +164,7 @@ pThree = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
     html.push(""" d_photo_3_1" style="display:block;float:left;margin-right:#{m}px;padding:#{p}px; """)
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
     html.push(""" "><div style="display:block;width:#{pw}px;height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[n][ps].src}" """)
-    if post.description? then html.push(""" alt="#{post.photos[n].description}" """) else  html.push(""" alt="" """)
+    if post.description? then html.push(""" alt="#{nohtml(post.photos[n].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto"></div></a>""")
 
     ######
@@ -171,7 +173,7 @@ pThree = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
     html.push(""" d_photo_3_2" style="display:block;float:left;margin-right:#{m}px;padding:#{p}px; """)
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
     html.push(""" "><div style="display:block;width:#{pw}px;height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[n2][ps].src}" """)
-    if post.description? then html.push(""" alt="#{post.photos[n2].description}" """) else  html.push(""" alt="" """)
+    if post.description? then html.push(""" alt="#{nohtml(post.photos[n2].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto"></div></a>""")
 
     ######
@@ -180,7 +182,7 @@ pThree = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
     html.push(""" d_photo_3_3" style="display:block;float:right;padding:#{p}px; """)
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
     html.push(""" "><div style="display:block;width:#{pw}px;height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[n3][ps].src}" """)
-    if post.description? then html.push(""" alt="#{post.photos[n3].description}" """) else  html.push(""" alt="" """)
+    if post.description? then html.push(""" alt="#{nohtml(post.photos[n3].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto"></div></a>""")
 
 

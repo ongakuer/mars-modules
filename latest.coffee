@@ -4,7 +4,7 @@ defaultTpl = """
 <a href="<%= post.d_title %>" title="<%= post.d_title %>"><%= post.d_title %></a>
 """
 
-latest = ({layout:l,template:tpl})->
+latest = ({template:tpl,layout:l,thumb:tbsize,nothumb:nothumb})->
 
         Tpl = _.template(tpl or defaultTpl)
         html = []
@@ -35,6 +35,54 @@ latest = ({layout:l,template:tpl})->
             else
                 post.d_content = post.description
 
+            ##怎么感觉笨笨的样子。。。
+            if !_.isEmpty(post.thumbnail)
+                if tbsize is "250"
+                    post.d_thumb = post.thumbnail['250'].src
+                else if tbsize is "500"
+                    post.d_thumb = post.thumbnail['500'].src
+                else if tbsize is "800"
+                    post.d_thumb = post.thumbnail['800'].src
+                else if tbsize is "1280"
+                    post.d_thumb = post.thumbnail['1280'].src
+                else if tbsize is "square_250"
+                    post.d_thumb = post.thumbnail.square_250.src
+                else if tbsize is "square_100"
+                    post.d_thumb = post.thumbnail.square_100.src
+                else
+                    post.d_thumb = nothumb or "http://x.libdd.com/farm1/08871e/be67d5dc/250.jpg"
+
+            else if post.photo
+
+                if tbsize is "250"
+                    post.d_thumb = post.photos[0]['250'].src
+                else if tbsize is "500"
+                    post.d_thumb = post.photos[0]['500'].src
+                else if tbsize is "800"
+                    post.d_thumb = post.photos[0]['800'].src
+                else if tbsize is "1280"
+                    post.d_thumb = post.photos[0]['1280'].src
+                else if tbsize is "square_250"
+                    post.d_thumb = post.photos[0].square_250.src
+                else if tbsize is "square_100"
+                    post.d_thumb = post.photos[0].square_100.src
+                else
+                    post.d_thumb = nothumb or "http://x.libdd.com/farm1/08871e/be67d5dc/250.jpg"
+
+            else if post.audio
+                if tbsize is "250" or tbsize is "square_250"
+                    post.d_thumb = post.covers.square_250
+                else if tbsize is "square_100"
+                    post.d_thumb = post.covers.square_100
+                else if tbsize is "500" or tbsize is "800" or tbsize is "1280"
+                    post.d_thumb = post.covers['1280']
+                else
+                    post.d_thumb = nothumb or "http://x.libdd.com/farm1/08871e/be67d5dc/250.jpg"
+            else if post.video
+                post.d_thumb = post.cover;
+            else 
+                post.d_thumb = nothumb or "http://x.libdd.com/farm1/08871e/be67d5dc/250.jpg"
+       
 
             html.push(Tpl({post:post}))
         

@@ -1,7 +1,7 @@
 _ = require "dd://modules/underscore/1.3.3/underscore"
 
 defaultTpl = """
-<a href="<%= post.d_title %>" title="<%= post.d_title %>"><%= post.d_title %></a>
+<a href="<%= post.url %>" title="<%= dian.tools.nohtmlTruncate(post.d_title,20) %>"><%= dian.tools.nohtmlTruncate(post.d_title,20) %></a>
 """
 
 latest = ({template:tpl,layout:l,thumb:tbsize,nothumb:nothumb})->

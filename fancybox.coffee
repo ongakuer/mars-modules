@@ -63,20 +63,29 @@ fancybox = ({ openEffect: oE,closeEffect: cE,titleType:tT,closeBtn: cB,helper: H
     if aD isnt "" and aD isnt undefined and aD?
         write("""
                 $('#{aD}'+' img').each(function(){
-                    $dd_text_img = $(this);
-                    $dd_text_img_a = $dd_text_img.parent('span').parent('a');
+                    var $dd_text_img = $(this);
+                    var $dd_text_img_a = $dd_text_img.parent('span').parent('a');
 
                     if($dd_text_img_a.length < 1){
                         $dd_text_img_src = $dd_text_img.attr('src');
-                        $dd_text_img.wrap('<a href='+$dd_text_img_src+' class="fancybox" rel="fancygroup"></a>');
-                    } else {
-                        $dd_text_img_a.addClass('fancybox').attr('rel','fancygroup');
+                        $dd_text_img.wrap('<a href='+$dd_text_img_src+'></a>');
+                    } 
+
+                });
+
+                $('#{aD}'+' a').each(function(){
+                    var $dd_a = $(this);
+                    var $dd_a_href = $(this).attr('href');
+                    var dd_pic = /(.*)+\.(jpg|jpeg|bmp|gif|png)$/i 
+                    if (dd_pic.test($dd_a_href)){
+                        $dd_a.addClass('fancybox').attr('rel','fancygroup');
                     }
-                });""")
+                })
+
+                """)
 
     write("""
           });
         </script>""")
-    
 
 exports.fancybox = fancybox

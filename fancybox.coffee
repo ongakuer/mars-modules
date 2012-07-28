@@ -64,9 +64,10 @@ fancybox = ({ openEffect: oE,closeEffect: cE,titleType:tT,closeBtn: cB,helper: H
         write("""
                 $('#{aD}'+' img').each(function(){
                     var $dd_text_img = $(this);
-                    var $dd_text_img_a = $dd_text_img.parent('span').parent('a');
+                    var $dd_text_img_span_a = $dd_text_img.parent('span').parent('a');
+                    var $dd_text_img_a = $dd_text_img.parent('a');
 
-                    if($dd_text_img_a.length < 1){
+                    if($dd_text_img_a.length < 1 && $dd_text_img_span_a.length < 1 ){
                         $dd_text_img_src = $dd_text_img.attr('src');
                         $dd_text_img.wrap('<a href='+$dd_text_img_src+'></a>');
                     } 

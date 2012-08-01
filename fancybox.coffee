@@ -6,13 +6,15 @@ fancybox = ({ openEffect: oE,closeEffect: cE,titleType:tT,closeBtn: cB,helper: H
         """)
 
     write("""
-        <link rel="stylesheet" href="http://x.libdd.com/farm1/08871e/c2808235/0.css"><!--mian-->
+        <!--Fancybox-->
+        <link rel="stylesheet" href="http://x.libdd.com/farm1/08871e/c2808235/0.css">
         <script type="text/javascript" src="http://x.libdd.com/farm1/08871e/7d5f5020/fancy.js"></script>
     """)
     
     if H isnt "" and H isnt undefined and H? and H isnt false
         write("""
-        <link rel="stylesheet" href="http://x.libdd.com/farm1/08871e/209d4eed/0.css"><!--helper-->
+        <!--Fancybox helper-->
+        <link rel="stylesheet" href="http://x.libdd.com/farm1/08871e/209d4eed/0.css">
         <script type="text/javascript" src="http://x.libdd.com/farm1/08871e/95134743/jquery.fancybox-buttons.js"></script>
         """)
 
@@ -63,26 +65,33 @@ fancybox = ({ openEffect: oE,closeEffect: cE,titleType:tT,closeBtn: cB,helper: H
     if aD isnt "" and aD isnt undefined and aD?
         write("""
                 $('#{aD}'+' img').each(function(){
-                    var $dd_text_img = $(this);
-                    var $dd_text_img_span_a = $dd_text_img.parent('span').parent('a');
-                    var $dd_text_img_a = $dd_text_img.parent('a');
+                    var $dd_text_img = $(this),
+                        $dd_text_img_span_a = $dd_text_img.parent('span').parent('a'),
+                        $dd_text_img_a = $dd_text_img.parent('a'),
+                        $dd_text_img_title;
 
                     if($dd_text_img_a.length < 1 && $dd_text_img_span_a.length < 1 ){
                         $dd_text_img_src = $dd_text_img.attr('src');
-                        $dd_text_img.wrap('<a href='+$dd_text_img_src+'></a>');
-                    } 
+                        $dd_text_img_alt = $dd_text_img.attr('alt');
+                        
+                        if ($dd_text_img_alt != void 0 ){
+                            $dd_text_img_title = $dd_text_img_alt; 
+                        } else{
+                            $dd_text_img_title = "";
+                        };
 
+                        $dd_text_img.wrap('<a href="'+$dd_text_img_src+'" title="'+ $dd_text_img_title +'"></a>');
+                    } 
                 });
 
                 $('#{aD}'+' a').each(function(){
-                    var $dd_a = $(this);
-                    var $dd_a_href = $(this).attr('href');
-                    var dd_pic = /(.*)+\.(jpg|jpeg|bmp|gif|png)$/i 
+                    var $dd_a = $(this),
+                        $dd_a_href = $(this).attr('href'),
+                        dd_pic =/\.(jpg|jpeg|bmp|gif|png)$/i;
                     if (dd_pic.test($dd_a_href)){
                         $dd_a.addClass('fancybox').attr('rel','fancygroup');
-                    }
-                })
-
+                    };
+                });
                 """)
 
     write("""

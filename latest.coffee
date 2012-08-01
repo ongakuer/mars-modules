@@ -1,4 +1,5 @@
 _ = require "dd://modules/underscore/1.3.3/underscore"
+moment = require("dd://modules/moment/1.5.0/moment")
 
 defaultTpl = """
 <a href="<%=post.url%>" title="<%= dian.tools.nohtmlTruncate(post.d_title,20) %>"><%= dian.tools.nohtmlTruncate(post.d_title,20) %></a>
@@ -84,7 +85,7 @@ latest = ({template:tpl,layout:l,thumb:tbsize,nothumb:nothumb})->
                 post.d_thumb = nothumb or "http://x.libdd.com/farm1/08871e/be67d5dc/250.jpg"
        
 
-            html.push(Tpl({post:post}))
+            html.push(Tpl({post:post,moment:moment}))
         
         layoutmid = html.join('')
 

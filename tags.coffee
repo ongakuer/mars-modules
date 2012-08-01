@@ -25,7 +25,7 @@ tags = ({ template:tagTpl,layout:l,num:n}) ->
         else
             layoutlast = ""
 
-    if dian.data.tags.length isnt 0    
+    if dian.data.tags.length isnt 0
         write(layoutfirst + layoutmid + layoutlast)
 
 exports.tags = tags

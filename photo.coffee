@@ -4,7 +4,7 @@ nohtml = dian.tools.nohtml
 
 ############
 ############ 单张图
-pOne = (w,h,m,p,bw,bs,postarrt,c,i,num) ->
+pOne = (w,h,m,p,bw,bs,postarrt,c,i,num,st) ->
     post=dian.data.posts[postarrt]
     html=[]
 
@@ -24,6 +24,8 @@ pOne = (w,h,m,p,bw,bs,postarrt,c,i,num) ->
     if c isnt "" and c isnt null and c? then html.push(c)
     html.push(""" d_photo_1" style="display:block;margin-right:#{m}px;padding:#{p}px;width:#{pw}px;""")
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
+    if st and st isnt null and st? 
+        if post.description? then html.push(""" " title="#{nohtml(post.photos[num].description)}""") else  html.push(""" title=" """)
     html.push(""" "><div style="display:block;width:#{pw}px;max-height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[num][ps].src}" """)
     if post.description? then html.push(""" alt="#{nohtml(post.photos[num].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto;"></div></a>""")
@@ -33,7 +35,7 @@ pOne = (w,h,m,p,bw,bs,postarrt,c,i,num) ->
 
 ############
 ############ 两张图并排
-pTwo = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
+pTwo = (w,h,m,p,bw,bs,postarrt,c,i,n,st) ->
     post=dian.data.posts[postarrt]
     n2 = n+1
     html = []
@@ -73,12 +75,13 @@ pTwo = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
     else  
         ph =  ph1 
 
-    
 
     html.push("""<a href="#{post.photos[n]["1280"].src}" rel=#{postarrt} class=" """)
     if c isnt "" and c isnt null and c? then html.push(c)
     html.push(""" d_photo_2_1" style="display:block;float:left;margin-right:#{m}px;padding:#{p}px; """)
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
+    if st and st isnt null and st? 
+        if post.description? then html.push(""" " title="#{nohtml(post.photos[n].description)}""") else  html.push(""" title=" """)
     html.push(""" "><div style="display:block;width:#{pw}px;height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[n][ps].src}" """)
     if post.description? then html.push(""" alt="#{nohtml(post.photos[n].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto"></div></a>""")
@@ -88,6 +91,8 @@ pTwo = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
     if c isnt "" and c isnt null and c? then html.push(c)
     html.push(""" d_photo_2_2" style="display:block;float:right;padding:#{p}px; """)
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
+    if st and st isnt null and st? 
+        if post.description? then html.push(""" " title="#{nohtml(post.photos[n2].description)}""") else  html.push(""" title=" """)
     html.push(""" "><div style="display:block;width:#{pw}px;height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[n2][ps].src}" """)
     if post.description? then html.push("""alt="#{nohtml(post.photos[n2].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto"></div></a>""")
@@ -98,7 +103,7 @@ pTwo = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
 
 ############
 ############ 三张图并排
-pThree = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
+pThree = (w,h,m,p,bw,bs,postarrt,c,i,n,st) ->
     post=dian.data.posts[postarrt]
     n2 = n+1
     n3 = n+2
@@ -163,6 +168,8 @@ pThree = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
     if c isnt "" and c isnt null and c? then html.push(c)
     html.push(""" d_photo_3_1" style="display:block;float:left;margin-right:#{m}px;padding:#{p}px; """)
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
+    if st and st isnt null and st? 
+        if post.description? then html.push(""" " title="#{nohtml(post.photos[n].description)}""") else  html.push(""" title=" """)
     html.push(""" "><div style="display:block;width:#{pw}px;height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[n][ps].src}" """)
     if post.description? then html.push(""" alt="#{nohtml(post.photos[n].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto"></div></a>""")
@@ -172,6 +179,8 @@ pThree = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
     if c isnt "" and c isnt null and c? then html.push(c)
     html.push(""" d_photo_3_2" style="display:block;float:left;margin-right:#{m}px;padding:#{p}px; """)
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
+    if st and st isnt null and st? 
+        if post.description? then html.push(""" " title="#{nohtml(post.photos[n2].description)}""") else  html.push(""" title=" """)
     html.push(""" "><div style="display:block;width:#{pw}px;height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[n2][ps].src}" """)
     if post.description? then html.push(""" alt="#{nohtml(post.photos[n2].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto"></div></a>""")
@@ -181,6 +190,8 @@ pThree = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
     if c isnt "" and c isnt null and c? then html.push(c)
     html.push(""" d_photo_3_3" style="display:block;float:right;padding:#{p}px; """)
     if bw isnt "" and bw isnt null and bw? and bs isnt "" and bs isnt null and bs? then html.push("""border-width:#{bw}px;border-style:#{bs};""")
+    if st and st isnt null and st? 
+        if post.description? then html.push(""" " title="#{nohtml(post.photos[n3].description)}""") else  html.push(""" title=" """)
     html.push(""" "><div style="display:block;width:#{pw}px;height:#{ph}px;overflow:hidden;"> <img src="#{post.photos[n3][ps].src}" """)
     if post.description? then html.push(""" alt="#{nohtml(post.photos[n3].description)}" """) else  html.push(""" alt="" """)
     html.push("""width="#{pw}" style="display:block;min-width:#{pw}px;height:auto"></div></a>""")
@@ -191,7 +202,7 @@ pThree = (w,h,m,p,bw,bs,postarrt,c,i,n) ->
 
 ############
 ############ 循环计数
-photoloop = (w,h,m,p,bw,bs,postarrt,c) -> 
+photoloop = (w,h,m,p,bw,bs,postarrt,c,st) -> 
     post=dian.data.posts[postarrt]
     layout = post.layout+"";
     layoutnum = layout.length - 1
@@ -203,24 +214,24 @@ photoloop = (w,h,m,p,bw,bs,postarrt,c) ->
         result = layout[i]
 
         if result is "1" 
-           write(pOne(w,h,m,p,bw,bs,postarrt,c,i,num))
+           write(pOne(w,h,m,p,bw,bs,postarrt,c,i,num,st))
            num = num+1
 
         if result is "2" 
-           write(pTwo(w,h,m,p,bw,bs,postarrt,c,i,num))
+           write(pTwo(w,h,m,p,bw,bs,postarrt,c,i,num,st))
            num = num+2
 
         if result is "3" 
-           write(pThree(w,h,m,p,bw,bs,postarrt,c,i,num))
+           write(pThree(w,h,m,p,bw,bs,postarrt,c,i,num,st))
            num = num+3
 
     write('</div>')
 
-photos =({maxwidth:w,maxheight:h,margin:m,padding:p,border_width:bw,border_style:bs,post:postarrt,class:c}) ->
+photos =({maxwidth:w,maxheight:h,margin:m,padding:p,border_width:bw,border_style:bs,post:postarrt,class:c,showtitle:st}) ->
         
         post=dian.data.posts[postarrt]
         if post.photo
-            photoloop(w,h,m,p,bw,bs,postarrt,c)
+            photoloop(w,h,m,p,bw,bs,postarrt,c,st)
 
 
 exports.photos=photos

@@ -85,7 +85,7 @@ latest = ({template:tpl,layout:l,thumb:tbsize,nothumb:nothumb})->
                 post.d_thumb = nothumb or "http://x.libdd.com/farm1/08871e/be67d5dc/250.jpg"
        
 
-            html.push(Tpl({post:post,moment:moment}))
+            html.push(Tpl({post:post,moment:moment,_:_}))
         
         layoutmid = html.join('')
 

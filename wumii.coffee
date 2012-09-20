@@ -1,8 +1,8 @@
 titleforamt=(post,tl) ->
     if post.title
-        post.title
+        dian.tools.nohtml(post.title)
     else if post.song
-        post.song
+        dian.tools.nohtml(post.song)
     else if post.description
         dian.tools.nohtmlTruncate(post.description, tl)
     else if post.content
